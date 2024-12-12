@@ -1,6 +1,14 @@
 package sumapp;
 
+/**
+ * Mainクラス.
+ */
 public class Main {
+  /**
+   * mainメソッド.
+   *
+   * @param args  コマンドライン引数
+   */
   public static void main(String[] args) {
     // 各クラスのインスタンスを作成
     InputHandler inputHandler = new InputHandler();

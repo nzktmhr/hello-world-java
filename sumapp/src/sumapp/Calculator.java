@@ -1,9 +1,19 @@
 package sumapp;
 
+/**
+ * 計算クラス.
+ */
 public class Calculator {
 
-  public int calculateSum(int num_first, int num_second) {
-    return num_first + num_second;
+  /**
+   * 足し算メソッド.
+   *
+   * @param numFirst   １つ目の数値.
+   * @param numSecond  ２つ目の数値.
+   * @return            合計値.
+   */
+  public int calculateSum(int numFirst, int numSecond) {
+    return numFirst + numSecond;
   }
 
 }
