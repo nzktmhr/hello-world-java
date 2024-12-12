@@ -1,7 +1,7 @@
 package sumapp;
 
 /**
- * Mainクラス.
+ * Mainクラス.test.
  */
 public class Main {
   /**
