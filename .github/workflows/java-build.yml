@@ -1,0 +1,30 @@
+name: Java CI with Spring Boot
+
+on:  # ワークフローが実行されるタイミングを定義
+  push:
+    branches:
+      - main #  mainブランチにPushされたとき
+  pull_request:
+    branches:
+      - main  # mainブランチへのPull Request作成時
+jobs:
+  build:
+    runs-on: ubuntu-latest  # ビルドを実行するOS
+
+    steps:
+    # リポジトリをクローン
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    # Javaのセットアップ(JDK21)
+    - name: Set up JDK 21
+      uses: actions/setup-java@v3
+      with:
+        java-version: '21'  # 必要なJDKのバージョン
+
+    - name: Install dependencies and compile
+      run: mvn clean compile
+
+    # 実行(Mavenのビルド後に実行する場合)
+    - name: Run the application
+      run: java -cp target/classes sumapp.Main
