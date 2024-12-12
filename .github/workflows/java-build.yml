@@ -3,10 +3,10 @@ name: Java CI with Spring Boot
 on:  # ワークフローが実行されるタイミングを定義
   push:
     branches:
-      - main #  mainブランチにPushされたとき
+      - master #  masterブランチにPushされたとき
   pull_request:
     branches:
-      - main  # mainブランチへのPull Request作成時
+      - master  # masterブランチへのPull Request作成時
 jobs:
   build:
     runs-on: ubuntu-latest  # ビルドを実行するOS
