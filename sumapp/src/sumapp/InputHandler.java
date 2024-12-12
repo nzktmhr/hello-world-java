@@ -21,7 +21,6 @@ public class InputHandler {
     // 二つ目の数値をユーザが入力
     System.out.println("Enter the second number: ");
     int numSecond = scanner.nextInt();
-    
     // scannerを閉じる
     scanner.close();
     
