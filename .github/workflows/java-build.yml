@@ -1,12 +1,12 @@
 name: Java CI with Maven
 
-on:
+on:  # ワークフローが実行されるタイミングを定義
   push:
     branches:
       - main #  mainブランチにPushされたとき
   pull_request:
     branches:
-      - main  # mainブランチへのPR作成時
+      - main  # mainブランチへのPull Request作成時
 jobs:
   build:
     runs-on: ubuntu-latest  # ビルドを実行するOS
