@@ -32,7 +32,7 @@ jobs:
     # 手動テストの実行
     - name: Run manual test
       run: |
-        java -cp build/classes sumapp.TestSumApp  # TestSumAppクラスを実行
+        java -cp sumapp/src/sumapp/TestSumApp  # TestSumAppクラスを実行
 
     # 結果の出力
     - name: Output result
