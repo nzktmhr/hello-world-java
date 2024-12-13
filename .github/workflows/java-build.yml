@@ -26,7 +26,7 @@ jobs:
     # Javaソースコードをコンパイル
     - name: Compile Java project
       run: |
-        javac -d target/classes sumapp/src/sumapp/*.java  # sumapp/src/sumapp内のすべてのJavaファイルをコンパイル
+        javac -d target/classes hello-world-java/sumapp/src/sumapp/*.java  # sumapp/src/sumapp内のすべてのJavaファイルをコンパイル
 
     # 手動テストの実行
     - name: Run manual test
