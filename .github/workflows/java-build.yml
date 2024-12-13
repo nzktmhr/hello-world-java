@@ -26,12 +26,12 @@ jobs:
     # Javaソースコードをコンパイル
     - name: Compile Java project
       run: |
-        javac -d target/classes hello-world-java/sumapp/src/sumapp/*.java  # sumapp/src/sumapp内のすべてのJavaファイルをコンパイル
+        mkdir -p build/classes
+        javac -d build/classes hello-world-java/sumapp/src/sumapp/*.java  # sumapp/src/sumapp内のすべてのJavaファイルをコンパイル
 
     # 手動テストの実行
     - name: Run manual test
       run: |
-        mkdir -p build/classes
         java -cp build/classes sumapp.TestSumApp  # TestSumAppクラスを実行
 
     # 結果の出力
