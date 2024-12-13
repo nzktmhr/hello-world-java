@@ -31,7 +31,8 @@ jobs:
     # 手動テストの実行
     - name: Run manual test
       run: |
-        java -cp target sumapp.TestSumApp  # TestSumAppクラスを実行
+        mkdir -p build/classes
+        java -cp build/classes sumapp.TestSumApp  # TestSumAppクラスを実行
 
     # 結果の出力
     - name: Output result
