@@ -32,7 +32,7 @@ jobs:
     - name: Compile Java project
       run: |
         mkdir -p target
-        javac -d target src/sumapp/*.java  # src/sumapp内のすべてのJavaファイルをコンパイル
+        javac -d target sumapp/src/sumapp/*.java  # sumapp/src/sumapp内のすべてのJavaファイルをコンパイル
 
     # 手動テストの実行
     - name: Run manual test
