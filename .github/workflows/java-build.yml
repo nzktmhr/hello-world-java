@@ -3,28 +3,37 @@ name: Java CI with Spring Boot
 on:  # ワークフローが実行されるタイミングを定義
   push:
     branches:
-      - main #  mainブランチにPushされたとき
+      - master #  masterブランチにPushされたとき
   pull_request:
     branches:
-      - main  # mainブランチへのPull Request作成時
+      - master  # masterブランチへのPull Request作成時
 jobs:
   build:
     runs-on: ubuntu-latest  # ビルドを実行するOS
 
     steps:
-    # リポジトリをクローン
+    # リポジトリをチェックアウト
     - name: Checkout repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v2
 
-    # Javaのセットアップ(JDK23)
-    - name: Set up JDK 23
+    # Javaのセットアップ(JDK17)
+    - name: Set up JDK 17
       uses: actions/setup-java@v3
       with:
-        java-version: '23'  # 必要なJDKのバージョン
+        java-version: '17'  # 必要なJDKのバージョン
+        distribution: 'temurin'  # 使用するJavaディストリビューション
 
-    - name: Install dependencies and compile
-      run: mvn clean compile
+    # Javaソースコードをコンパイル
+    - name: Compile Java project
+      run: |
+        mkdir -p build/classes
+        javac -d build/classes sumapp/src/sumapp/*.java  # sumapp/src/sumapp内のすべてのJavaファイルをコンパイル
 
-    # 実行(Mavenのビルド後に実行する場合)
-    - name: Run the application
-      run: java -cp target/classes sumapp.Main
+    # 手動テストの実行
+    - name: Run manual test
+      run: |
+        java -cp build/classes sumapp.TestSumApp  # TestSumAppクラスを実行
+
+    # 結果の出力
+    - name: Output result
+      run: echo "Test completed."
