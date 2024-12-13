@@ -27,13 +27,12 @@ jobs:
     - name: Compile Java project
       run: |
         mkdir -p target
-        cd src/main/java  # 作業ディレクトリを変更
-        javac -d ../../../target sumapp/*.java  # ソースコードをコンパイル
+        javac -d target src/sumapp/*.java  # src/sumapp内のすべてのJavaファイルをコンパイル
 
     # 手動テストの実行
     - name: Run manual test
       run: |
-        java -cp target sumapp.TestSumApp
+        java -cp target sumapp.TestSumApp  # TestSumAppクラスを実行
 
     # 結果の出力
     - name: Output result
