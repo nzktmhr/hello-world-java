@@ -1,0 +1,19 @@
+name: Test Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  example:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Missing required field
+        run: echo "This step is missing the required 'id' or 'name' field"
+
+      - run:
+        # 'name' が欠落しているためエラーが発生するはずです
