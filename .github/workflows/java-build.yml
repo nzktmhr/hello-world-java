@@ -26,7 +26,6 @@ jobs:
     # Javaソースコードをコンパイル
     - name: Compile Java project
       run: |
-        mkdir -p target/classes
         javac -d target/classes sumapp/src/sumapp/*.java  # sumapp/src/sumapp内のすべてのJavaファイルをコンパイル
 
     # 手動テストの実行
