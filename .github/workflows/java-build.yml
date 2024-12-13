@@ -21,6 +21,7 @@ jobs:
       uses: actions/setup-java@v3
       with:
         java-version: '17'  # 必要なJDKのバージョン
+        distribution: 'temurin'  # 使用するJavaディストリビューション
 
     - name: Install dependencies and compile
       run: mvn clean compile
