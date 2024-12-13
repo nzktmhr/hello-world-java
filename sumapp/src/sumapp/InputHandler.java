@@ -1,4 +1,4 @@
-package main.java.sumapp;
+package sumapp;
 
 import java.util.Scanner;
 

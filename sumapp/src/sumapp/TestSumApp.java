@@ -1,6 +1,4 @@
-package test.java.sumapp;
-
-import main.java.sumapp.Calculator;
+package sumapp;
 
 /**
  * SumAppのテストクラス.

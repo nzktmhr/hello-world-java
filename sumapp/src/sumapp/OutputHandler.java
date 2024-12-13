@@ -1,4 +1,4 @@
-package main.java.sumapp;
+package sumapp;
 
 /**
  * 出力クラス.
