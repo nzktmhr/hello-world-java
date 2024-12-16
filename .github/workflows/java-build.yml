@@ -33,7 +33,7 @@ jobs:
       id: test
       run: |
         java -cp sumapp/target/classes sumapp.TestSumApp > test_output.txt # TestSumAppクラスを実行
-        if grep -q "Test failed" tet_output.txt; then  # テストに失敗したとき
+        if grep -q "Test failed" test_output.txt; then  # テストに失敗したとき
           echo "Test failed due to incorrect calculation."
           exit 1
         else
