@@ -19,7 +19,6 @@ public class Main {
     int[] inputs = inputHandler.getInputs();
     // 値の計算
     int result = calculator.calculateSum(inputs[0], inputs[1]);
-    result++; // 敢えて結果を違うものにする
     // 結果の出力
     outputHandler.printResult(result);
   }
