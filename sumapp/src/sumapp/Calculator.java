@@ -13,7 +13,7 @@ public class Calculator {
    * @return           合計値.
    */
   public int calculateSum(int numFirst, int numSecond) {
-    return numFirst - numSecond;
+    return numFirst + numSecond;
   }
 
 }
