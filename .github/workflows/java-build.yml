@@ -66,4 +66,4 @@ jobs:
 
       - name: Lint Java files
         run: |
-          find sumapp/src/sumapp/ -name "*.java" | xargs shellcheck || echo "Lint warnings found."
+          find sumapp/src/sumapp/ -name "*.java" -print0 | xargs shellcheck || echo "Lint warnings found."
