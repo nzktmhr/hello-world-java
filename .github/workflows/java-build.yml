@@ -30,8 +30,15 @@ jobs:
 
     # 手動テストの実行
     - name: Run manual test
+      id: test
       run: |
-        java -cp sumapp/target/classes sumapp.TestSumApp  # TestSumAppクラスを実行
+        java -cp sumapp/target/classes sumapp.TestSumApp > test_output.txt # TestSumAppクラスを実行
+        if grep -q "Test failed" tet_output.txt; then  # テストに失敗したとき
+          echo "Test failed due to incorrect calculation."
+          exit 1
+        else
+          echo "All tests passed."
+        fi
 
     # 結果の出力
     - name: Output result
