@@ -8,38 +8,62 @@ on:  # ワークフローが実行されるタイミングを定義
     branches:
       - master  # masterブランチへのPull Request作成時
 jobs:
-  build:
-    runs-on: ubuntu-latest  # ビルドを実行するOS
-
+  # ジョブ1: コンパイルの確認
+  compile:
+    runs-on: ubuntu-latest
     steps:
-    # リポジトリをチェックアウト
-    - name: Checkout repository
-      uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    # Javaのセットアップ(JDK17)
-    - name: Set up JDK 17
-      uses: actions/setup-java@v4
-      with:
-        java-version: '17'  # 必要なJDKのバージョン
-        distribution: 'temurin'  # 使用するJavaディストリビューション
+      - name: set up JDK 17
+        uses: actions/setup-java@4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
 
-    # Javaソースコードをコンパイル
-    - name: Compile Java project
-      run: |
-        javac -d sumapp/target/classes sumapp/src/sumapp/*.java  # sumapp/src/sumapp内のすべてのJavaファイルをコンパイル
+      - name: Compile Java project
+        run: |
+          javac -d sumapp/target/classes sumapp/src/sumapp/*.java
 
-    # 手動テストの実行
-    - name: Run manual test
-      id: test
-      run: |
-        java -cp sumapp/target/classes sumapp.TestSumApp > test_output.txt # TestSumAppクラスを実行
-        if grep -q "Test failed" test_output.txt; then  # テストに失敗したとき
-          echo "Test failed due to incorrect calculation."
-          exit 1
-        else
-          echo "All tests passed."
-        fi
+  # ジョブ2: テスト実行
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    # 結果の出力
-    - name: Output result
-      run: echo "Test completed."
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: compile Java project
+        run: |
+          javac -d sumapp/target/classes sumapp/src/sumapp/*.java
+
+      - name: Run manual test
+        run: |
+          java -cp sumapp/target/classes sumapp.TestSumApp > test_output.txt
+          if grep -q "Test failed" test_output.txt; then
+            echo "Test failed due to incorrect calculation."
+            exit 1
+          else
+            echo "All tests passed."
+          fi
+          
+  # ジョブ3: ドキュメントの静的解析
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up linter
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y shellcheck
+
+      - name: Lint Java files
+        run: |
+          find sumapp/src/sumapp/ -name "*.java" | xargs shellcheck || echo "Lint warnings found."
