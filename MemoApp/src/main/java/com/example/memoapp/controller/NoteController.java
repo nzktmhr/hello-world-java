@@ -6,11 +6,11 @@ import com.example.memoapp.service.NoteService;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
-@RequestMapping("/notes")
+@Controller
 public class NoteController {
   
   private final NoteService noteService;
@@ -20,18 +20,12 @@ public class NoteController {
     this.noteService = noteService;
   }
   
-  // メモ登録API: POST /notes
-  @PostMapping
-  public ResponseEntity<Note> createNote(@RequestBody Note noteRequest) {
-    Note savedNote = noteService.saveNote(noteRequest.getContent());
-    return ResponseEntity.ok(savedNote);
-  }
-  
-  // メモ一覧取得API: GET /notes
-  @GetMapping
-  public ResponseEntity<List<Note>> getAllNotes() {
+  // メモ一覧表示ページ
+  @GetMapping("/notes")
+  public String getAllNotes(Model model) {
     List<Note> notes = noteService.getAllNotes();
-    return ResponseEntity.ok(notes);
+    model.addAttribute("notes", notes);
+    return "notes"; // notes.htmlを返す
   }
 
 }
