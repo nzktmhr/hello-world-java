@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>新規メモ追加</title>
+</head>
+<body>
+	<h1>新規メモ追加</h1>
+	<form action="#" th:action="@{/notes}" th:object="${note}" method="post">
+		<label for="content">メモ内容</label>
+		<input type="text" id="content" name="content" th:field="*{content}" required />
+		<br><br>
+		<button type="submit">追加</button>
+	</form>
+	<br>
+	<a href="/notes">メモ一覧に戻る</a>
+</body>
+</html>

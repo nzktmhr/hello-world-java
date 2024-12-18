@@ -27,5 +27,19 @@ public class NoteController {
     model.addAttribute("notes", notes);
     return "notes"; // notes.htmlを返す
   }
+  
+  // ページ表示用のメソッド
+  @GetMapping("/notes/new")
+  public String showNewNoteForm(Model model) {
+    model.addAttribute("note", new Note());
+    return "new_note";
+  }
+  
+  // 新規メモ追加処理のメソッド
+  @PostMapping("/notes")
+  public String addNewNote(@ModelAttribute Note note) {
+    noteService.saveNote(note.getContent());
+    return "redirect:/notes"; // 登録後に一覧ページへリダイレクト
+  }
 
 }
